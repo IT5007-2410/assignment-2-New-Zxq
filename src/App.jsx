@@ -2,11 +2,11 @@
 const initialTravellers = [
   {
     id: 1, name: 'Jack', phone: 88885555,
-    bookingTime: new Date(),
+    bookingTime: new Date(), destination: 'Singapore',
   },
   {
     id: 2, name: 'Rose', phone: 88884444,
-    bookingTime: new Date(),
+    bookingTime: new Date(), destination: 'Thailand',
   },
 ];
 
@@ -73,6 +73,8 @@ class Delete extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     /*Q5. Fetch the passenger details from the deletion form and call deleteTraveller()*/
+    const form = document.forms.deleteTraveller;
+    
   }
 
   render() {
@@ -140,6 +142,7 @@ class TicketToRide extends React.Component {
 		
 		{/*Q4. Code to call the component that adds a traveller.*/}
 		{/*Q5. Code to call the component that deletes a traveller based on a given attribute.*/}
+    <Delete/>
 	</div>
       </div>
     );
