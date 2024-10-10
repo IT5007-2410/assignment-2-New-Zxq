@@ -111,6 +111,20 @@ class Delete extends React.Component {
   }
 }
 
+class SeatMap extends React.Component {
+  render() {
+    const { totalSeats, bookedSeats } = this.props;
+    const seats = Array.from({ length: totalSeats }, (_, index) => (
+      <div
+        key={index}
+        className={`seat ${index < bookedSeats ? 'booked' : ''}`}
+      ></div>
+    ));
+
+    return <div className="seat-map">{seats}</div>;
+  }
+}
+
 class Homepage extends React.Component {
 	constructor() {
 	super();
@@ -120,6 +134,7 @@ class Homepage extends React.Component {
 	<div>
 		{/*Q2. Placeholder for Homepage code that shows free seats visually.*/}
     <h2>Remaining Seats: {10-this.props.bookedSeats}</h2>
+    <SeatMap totalSeats={10} bookedSeats={this.props.bookedSeats} />
 	</div>);
 	}
 }

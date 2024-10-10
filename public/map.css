@@ -1,0 +1,25 @@
+.seat-map {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 两列 */
+    grid-row-gap: 15px;
+    grid-column-gap: 100px; 
+
+    margin: 10px 10;
+  }
+  
+  .seat-column {
+    display: grid;
+    grid-template-rows: repeat(5, 30px); /* 每列五个座位 */
+    grid-gap: 50px;
+  }
+  
+  .seat {
+    width: 30px;
+    height: 30px;
+    background-color: green;
+  }
+  
+  .seat.booked {
+    background-color: gray;
+  }
+
