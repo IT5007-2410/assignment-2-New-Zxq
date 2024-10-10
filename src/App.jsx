@@ -17,12 +17,11 @@ function TravellerRow(props) {
   return (
     <tr>
 	  {/*Q3. Placeholder for rendering one row of a table with required traveller attribute values.*/}
-    <td>{traveller.id}</td>
+      <td>{traveller.id}</td>
       <td>{traveller.name}</td>
       <td>{traveller.phone}</td>
-      <td>{traveller.bookingTime}</td>
+      <td>{traveller.bookingTime.toLocaleString()}</td>{/* 转换日期为字符串,React组件中的一个td元素（在TravellerRow组件中）试图渲染一个不是合法React子元素的值。具体来说，错误信息指出一个日期对象（Fri Oct 11 2024 00:17:43 GMT+0800 (中国标准时间)）被直接用作React子元素，这是不允许的。*/}
       <td>{traveller.destination}</td>
-      
     </tr>
   );
 }
@@ -30,7 +29,7 @@ function TravellerRow(props) {
 function Display(props) {
   
 	/*Q3. Write code to render rows of table, reach corresponding to one traveller. Make use of the TravellerRow function that draws one row.*/
-
+  const { travellers } = props;
   return (
     <table className="bordered-table">
       <thead>
@@ -45,7 +44,7 @@ function Display(props) {
       </thead>
       <tbody>
         {/*Q3. write code to call the JS variable defined at the top of this function to render table rows.*/}
-        {initialTravellers.map(function(traveller) {
+        {travellers.map(function(traveller) {
           return <TravellerRow key={traveller.id} traveller={traveller} />;
         })}
       </tbody>
@@ -181,6 +180,7 @@ class TicketToRide extends React.Component {
 		{/*Only one of the below four divisions is rendered based on the button clicked by the user.*/}
 		{/*Q2 and Q6. Code to call Instance that draws Homepage. Homepage shows Visual Representation of free seats.*/}
 		{/*Q3. Code to call component that Displays Travellers.*/}
+    <Display travellers={this.state.travellers} />
 		{/*Q4. Code to call the component that adds a traveller.*/}
     <Add bookTraveller={this.bookTraveller} travellers={this.state.travellers}/>
 		{/*Q5. Code to call the component that deletes a traveller based on a given attribute.*/}
