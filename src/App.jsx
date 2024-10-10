@@ -20,7 +20,7 @@ function TravellerRow(props) {
       <td>{traveller.id}</td>
       <td>{traveller.name}</td>
       <td>{traveller.phone}</td>
-      <td>{traveller.bookingTime.toLocaleString()}</td>{/* 转换日期为字符串,React组件中的一个td元素（在TravellerRow组件中）试图渲染一个不是合法React子元素的值。具体来说，错误信息指出一个日期对象（Fri Oct 11 2024 00:17:43 GMT+0800 (中国标准时间)）被直接用作React子元素，这是不允许的。*/}
+      <td>{traveller.bookingTime.toLocaleString()}</td>{/* 转换日期为字符串, React组件中的一个td元素（在TravellerRow组件中）试图渲染一个不是合法React子元素的值。具体来说，错误信息指出一个日期对象（Fri Oct 11 2024 00:17:43 GMT+0800 (中国标准时间)）被直接用作React子元素，这是不允许的。*/}
       <td>{traveller.destination}</td>
     </tr>
   );
