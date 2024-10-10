@@ -13,9 +13,16 @@ const initialTravellers = [
 
 function TravellerRow(props) {
   {/*Q3. Placeholder to initialize local variable based on traveller prop.*/}
+  const { traveller } = props;
   return (
     <tr>
 	  {/*Q3. Placeholder for rendering one row of a table with required traveller attribute values.*/}
+    <td>{traveller.id}</td>
+      <td>{traveller.name}</td>
+      <td>{traveller.phone}</td>
+      <td>{traveller.bookingTime}</td>
+      <td>{traveller.destination}</td>
+      
     </tr>
   );
 }
@@ -33,10 +40,14 @@ function Display(props) {
           <th>Name</th>
           <th>Phone</th>
           <th>Booking Time</th>
+          <th>Destination</th>
         </tr>
       </thead>
       <tbody>
         {/*Q3. write code to call the JS variable defined at the top of this function to render table rows.*/}
+        {initialTravellers.map(function(traveller) {
+          return <TravellerRow key={traveller.id} traveller={traveller} />;
+        })}
       </tbody>
     </table>
   );
@@ -74,6 +85,8 @@ class Delete extends React.Component {
     e.preventDefault();
     /*Q5. Fetch the passenger details from the deletion form and call deleteTraveller()*/
     const form = document.forms.deleteTraveller;
+    console.log(form.travellername.value);
+    this.props.deletefunction(form.travellername.value);
     
   }
 
@@ -114,6 +127,9 @@ class TicketToRide extends React.Component {
   componentDidMount() {
     this.loadData();
   }
+  componentDidUpdate() {
+    console.log(this.state.travellers);
+  }
 
   loadData() {
     setTimeout(() => {
@@ -127,6 +143,16 @@ class TicketToRide extends React.Component {
 
   deleteTraveller(passenger) {
 	  /*Q5. Write code to delete a passenger from the traveller state variable.*/
+    console.log("Delete: " , passenger);
+    //actual delete code
+    var newlist = []
+    this.state.travellers.forEach(element => {
+      if(element.name != passenger)
+      {
+        newlist.push(element);
+      }
+      this.setState({travellers: newlist});
+    });
   }
   render() {
     return (
@@ -142,7 +168,7 @@ class TicketToRide extends React.Component {
 		
 		{/*Q4. Code to call the component that adds a traveller.*/}
 		{/*Q5. Code to call the component that deletes a traveller based on a given attribute.*/}
-    <Delete/>
+    <Delete deletefunction={this.deleteTraveller}/>
 	</div>
       </div>
     );
